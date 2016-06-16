@@ -1,12 +1,14 @@
-package assignment3;
-
 /**
  * Assignment 3: Finding a Gene
- * The program finds and prints a gene in a strand of DNA and also prints the stop codon that identifies the gene.
+ * The program finds and prints a gene in a strand of DNA
+ * and also prints the stop codon that identifies the gene.
  * 
  * @author Kuei-Jung Hu
  * @version January 26, 2016
  */
+
+package assignment3;
+
 import edu.duke.*;
 import java.io.*;
 

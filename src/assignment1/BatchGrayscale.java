@@ -1,5 +1,3 @@
-package assignment1;
-
 /**
  * Assignment 1: Batch Grayscale
  * The program batch processes several images, and creates and saves new images that are grayscale versions of each image.
@@ -12,6 +10,9 @@ package assignment1;
  * @author Kuei-Jung Hu 
  * @version January 21, 2016
  */
+
+package assignment1;
+
 import edu.duke.*;
 import java.io.*;
 

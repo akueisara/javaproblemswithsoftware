@@ -1,5 +1,3 @@
-package assignment2;
-
 /**
  * Assignment 2: Image Inversion
  * The program creates new images that are photographic negatives (or inverted images) of selected images and saves these new images.
@@ -9,6 +7,9 @@ package assignment2;
  * @author Kuei-Jung Hu 
  * @version January 21, 2016
  */
+
+package assignment2;
+
 import edu.duke.*;
 import java.io.*;
 
