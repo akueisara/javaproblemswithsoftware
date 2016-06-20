@@ -1,5 +1,5 @@
 /**
- * Assignemnt 6: Storing All Genes
+ * Assignemnt 6: Storing All Genes / Processing DNA Strings
  * The progeam finds all the genes in a DNA string and then stores them using the
  * StorageResource class
  * @author Kuei-Jung Hu
@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class StoringAllGenes
 {
 	/** The method finds the first occurrence of each stop codon to the right of index */
-	private static int findStopIndex(String dna, int index){
+	public static int findStopIndex(String dna, int index){
         int stop1 = dna.indexOf("tga", index);
         if (stop1 == -1 || (stop1 - index) % 3 != 0) {
             stop1 = dna.length();    
@@ -32,7 +32,7 @@ public class StoringAllGenes
     }  
     
     /** The method creates and returns a StorageResource containing the genes found */
-	private static StorageResource storeAll(String dna){
+	public static StorageResource storeAll(String dna){
         String dnaLow = dna.toLowerCase();
         StorageResource store = new StorageResource();
         int start = 0;
@@ -54,7 +54,7 @@ public class StoringAllGenes
     }
     
     /** The method returns the ratio of C’s and G’s in dna as a fraction of the entire strand of DNA */
-	private static float cgRatio(String dna){
+	public static float cgRatio(String dna){
         dna = dna.toLowerCase();  
         int len = dna.length();
         int CGCount = 0;
@@ -70,7 +70,8 @@ public class StoringAllGenes
         return ((float)CGCount)/len;
     }
     
-	private static void FindCTG(StorageResource s){
+	/** Find how many times the codon CTG appears in a strand of DNA */
+	public static void FindCTG(StorageResource s){
         int countctg = 0;
         
         for (String gene : s.data()) {
@@ -90,7 +91,7 @@ public class StoringAllGenes
     }
     
     /** The method processes all the strings in sr */
-	private static void printGenes(StorageResource sr){
+	public static void printGenes(StorageResource sr){
 
         int longerthan60 = 0;
         int CGGreaterthan35 = 0;
@@ -128,7 +129,7 @@ public class StoringAllGenes
         System.out.println("\nlongestgene.size: " + longestgene);
     }
     
-	private static void testStorageFinder() {
+	public static void testStorageFinder() {
 		DirectoryResource dr = new DirectoryResource();
         StorageResource dnaStore = new StorageResource(); 
         for (File f : dr.selectedFiles()) {
@@ -136,7 +137,7 @@ public class StoringAllGenes
             String s = fr.asString();
             dnaStore = storeAll(s); 
             printGenes(dnaStore);
-            //FindCTG(dnaStore);
+            FindCTG(dnaStore);
         }
 	}
     

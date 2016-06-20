@@ -15,7 +15,7 @@ import java.io.*;
 public class FindAGene {
 	
 	// It returns a gene for a protein from the String dna 
-	private static String findProtein(String dna) {
+	public static String findProtein(String dna) {
 		int start = dna.toLowerCase().indexOf("atg");
 		if (start == -1) {
 			return ""; // no start codon found
@@ -38,7 +38,7 @@ public class FindAGene {
 	}
 	
 	// The method prints the stop codon found in the gene
-	private static void testing() {
+	public static void testing() {
 		//String a = "cccatggggtttaaataataataggagagagagagagagttt";
 		//String ap = "atggggtttaaataataatag";
 		//String a = "atgcctag";
@@ -66,7 +66,7 @@ public class FindAGene {
 	
 	//  This method returns the stop codon of the gene. 
 	//  It returns the empty string if the parameter is not a gene.
-	private static String stopCodon(String dna) {
+	public static String stopCodon(String dna) {
         String answer = findProtein(dna);
         int size = answer.length();
         if ( size > 6 ) {
@@ -77,7 +77,7 @@ public class FindAGene {
         }
     }
     
-	private static void printAllStarts(String dna){
+	public static void printAllStarts(String dna){
         int start = 0;
         while (true){
             int loc = dna.indexOf("atg",start);

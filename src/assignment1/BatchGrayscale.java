@@ -18,7 +18,7 @@ import java.io.*;
 
 public class BatchGrayscale {
 	//I started with the image I wanted (inImage)
-	private static ImageResource makeGray(ImageResource inImage) {
+	public static ImageResource makeGray(ImageResource inImage) {
 		//I made a blank image of the same size
 		ImageResource outImage = new ImageResource(inImage.getWidth(), inImage.getHeight());
 		//for each pixel in outImage

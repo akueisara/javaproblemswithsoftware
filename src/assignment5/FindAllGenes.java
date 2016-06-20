@@ -11,7 +11,7 @@ package assignment5;
 public class FindAllGenes
 {
 	// This method findStopIndex finds the first occurrence of each stop codon to the right of index.
-	private static int findStopIndex(String dna, int index){
+	public static int findStopIndex(String dna, int index){
         int stop1 = dna.indexOf("tga", index);
         if (stop1 == -1 || (stop1 - index) % 3 != 0) {
             stop1 = dna.length();    
@@ -28,7 +28,7 @@ public class FindAllGenes
     }  
     
     // This method printAll repeatedly looks for a gene, and if it finds one, it prints it and then looks for another gene.
-	private static void printAll(String dna){
+	public static void printAll(String dna){
         String dnaLow = dna.toLowerCase();
         int start = 0;
         while (true) {
@@ -47,7 +47,7 @@ public class FindAllGenes
     }
     
     // demo
-	private static void testFinder() {
+	public static void testFinder() {
         
         String dna1 = "ATGAAATGAAAA";
         System.out.println("DNA string is: \n" +dna1);
