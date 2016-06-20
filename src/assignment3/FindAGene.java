@@ -15,7 +15,7 @@ import java.io.*;
 public class FindAGene {
 	
 	// It returns a gene for a protein from the String dna 
-	public String findProtein(String dna) {
+	private static String findProtein(String dna) {
 		int start = dna.toLowerCase().indexOf("atg");
 		if (start == -1) {
 			return ""; // no start codon found
@@ -38,7 +38,7 @@ public class FindAGene {
 	}
 	
 	// The method prints the stop codon found in the gene
-	public void testing() {
+	private static void testing() {
 		//String a = "cccatggggtttaaataataataggagagagagagagagttt";
 		//String ap = "atggggtttaaataataatag";
 		//String a = "atgcctag";
@@ -66,7 +66,7 @@ public class FindAGene {
 	
 	//  This method returns the stop codon of the gene. 
 	//  It returns the empty string if the parameter is not a gene.
-	public String stopCodon(String dna) {
+	private static String stopCodon(String dna) {
         String answer = findProtein(dna);
         int size = answer.length();
         if ( size > 6 ) {
@@ -77,7 +77,7 @@ public class FindAGene {
         }
     }
     
-    public void printAllStarts(String dna){
+	private static void printAllStarts(String dna){
         int start = 0;
         while (true){
             int loc = dna.indexOf("atg",start);
@@ -91,15 +91,14 @@ public class FindAGene {
 
     // demo
  	public static void main(String[] args) {
- 		FindAGene find = new FindAGene();
- 		find.testing();
+ 		testing();
  		
 		DirectoryResource dr = new DirectoryResource();
 		for (File f : dr.selectedFiles()) {
 			FileResource fr = new FileResource(f);
 			String s = fr.asString();
 			System.out.println("read " + s.length() + " characters");
-			String result = find.findProtein(s);
+			String result = findProtein(s);
 			System.out.println("found " + result);
 		}
 	}

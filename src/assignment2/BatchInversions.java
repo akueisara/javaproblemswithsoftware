@@ -15,7 +15,7 @@ import java.io.*;
 
 public class BatchInversions {
 	//I started with the image I wanted (inImage)
-	public ImageResource makeInversion(ImageResource inImage) {
+	private static ImageResource makeInversion(ImageResource inImage) {
 		//I made a blank image of the same size
 		ImageResource outImage = new ImageResource(inImage.getWidth(), inImage.getHeight());
 		//for each pixel in outImage
@@ -33,7 +33,7 @@ public class BatchInversions {
 		return outImage;
 	}
 	
-	public void selectAndConvert()
+	private static void selectAndConvert()
 	{
 		DirectoryResource directory = new DirectoryResource();
 		for(File file: directory.selectedFiles())
@@ -50,7 +50,6 @@ public class BatchInversions {
 
 	// demo
 	public static void main(String[] args) {
-		BatchInversions b = new BatchInversions();
-		b.selectAndConvert();
+		selectAndConvert();
 	}   
 }

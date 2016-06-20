@@ -1,18 +1,21 @@
 /**
- * Write a description of class SortingAllGenes here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * Assignemnt 6: Storing All Genes
+ * The progeam finds all the genes in a DNA string and then stores them using the
+ * StorageResource class
+ * @author Kuei-Jung Hu
+ * @version January 28, 2016
  */
 
 package assignment6;
 
 import edu.duke.*;
 import java.io.File;
+import java.util.ArrayList;
 
 public class StoringAllGenes
 {
-    public int findStopIndex(String dna, int index){
+	/** The method finds the first occurrence of each stop codon to the right of index */
+	private static int findStopIndex(String dna, int index){
         int stop1 = dna.indexOf("tga", index);
         if (stop1 == -1 || (stop1 - index) % 3 != 0) {
             stop1 = dna.length();    
@@ -28,7 +31,8 @@ public class StoringAllGenes
         return Math.min(stop1, Math.min(stop2,stop3));
     }  
     
-    public StorageResource storeAll(String dna){
+    /** The method creates and returns a StorageResource containing the genes found */
+	private static StorageResource storeAll(String dna){
         String dnaLow = dna.toLowerCase();
         StorageResource store = new StorageResource();
         int start = 0;
@@ -49,14 +53,15 @@ public class StoringAllGenes
         return store;
     }
     
-    public float calCGRatio(String gene){
-        gene = gene.toLowerCase();  
-        int len = gene.length();
+    /** The method returns the ratio of C’s and G’s in dna as a fraction of the entire strand of DNA */
+	private static float cgRatio(String dna){
+        dna = dna.toLowerCase();  
+        int len = dna.length();
         int CGCount = 0;
 
         for(int i=0; i<len; i++){
 
-            if(gene.charAt(i) == 'c' || gene.charAt(i) == 'g')
+            if(dna.charAt(i) == 'c' || dna.charAt(i) == 'g')
                 CGCount++;
 
         }//end for loop
@@ -65,9 +70,7 @@ public class StoringAllGenes
         return ((float)CGCount)/len;
     }
     
-    public void FindCTG(StorageResource s){
-        int longerthan60 = 0;
-        int CGGreaterthan35 = 0;
+	private static void FindCTG(StorageResource s){
         int countctg = 0;
         
         for (String gene : s.data()) {
@@ -86,35 +89,46 @@ public class StoringAllGenes
         System.out.println("CTG: " + countctg);
     }
     
-    public void printGenes(StorageResource sr){
+    /** The method processes all the strings in sr */
+	private static void printGenes(StorageResource sr){
 
         int longerthan60 = 0;
         int CGGreaterthan35 = 0;
         int longestgene = 0;
         int tempgene = 0;
+        ArrayList<String> longerthansixty = new ArrayList<String>();
+        ArrayList<String> CGGreaterthanthirtyfive = new ArrayList<String>();
         
         for (String gene : sr.data()) {
-			//System.out.println(gene);
 			tempgene = gene.length();    
 			if (longestgene<tempgene){
 			    longestgene = tempgene;
 			 }
 			if (gene.length()>60){
 			    longerthan60++;
+			    longerthansixty.add(gene);
 			}
-			if (calCGRatio(gene)>0.35){
+			if (cgRatio(gene)>0.35){
 			    CGGreaterthan35++;
+			    CGGreaterthanthirtyfive.add(gene);
 			}
 		}
 
         System.out.println("dnaStore.size: " + sr.size());
-        System.out.println("\n There are " + sr.size() + " genes. ");
-        System.out.println("There are " + longerthan60 + " genes longer than 60.");
-        System.out.println("There are " + CGGreaterthan35 + " genes with CG ratio greater than 0.35.");
-        System.out.println("longestgene.size: " + longestgene);
+        System.out.println("There are " + sr.size() + " genes. ");
+        System.out.println("\nThere are " + longerthan60 + " genes longer than 60.");
+        for (String gene: longerthansixty){
+        	System.out.println(gene);
+        }
+        System.out.println("\nThere are " + CGGreaterthan35 + " genes with CG ratio greater than 0.35.");
+        for (String gene: CGGreaterthanthirtyfive){
+        	System.out.println(gene);
+        }
+        
+        System.out.println("\nlongestgene.size: " + longestgene);
     }
     
-    public void testStorageFinder() {
+	private static void testStorageFinder() {
 		DirectoryResource dr = new DirectoryResource();
         StorageResource dnaStore = new StorageResource(); 
         for (File f : dr.selectedFiles()) {
@@ -122,7 +136,12 @@ public class StoringAllGenes
             String s = fr.asString();
             dnaStore = storeAll(s); 
             printGenes(dnaStore);
-            FindCTG(dnaStore);
+            //FindCTG(dnaStore);
         }
 	}
+    
+    // Demo
+    public static void main(String[] args) {
+    	testStorageFinder();
+    }
 }
