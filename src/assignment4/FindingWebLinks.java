@@ -3,7 +3,6 @@
  * The program reads the lines from the file at this URL location, http://www.dukelearntoprogram.com/course2/data/manylinks.html, 
  * and prints each URL on the page that is a link to youtube.com.
  * 
- * @author Kuei-Jung Hu
  * @version January 26, 2016
  */
 

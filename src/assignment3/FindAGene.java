@@ -3,7 +3,6 @@
  * The program finds and prints a gene in a strand of DNA
  * and also prints the stop codon that identifies the gene.
  * 
- * @author Kuei-Jung Hu
  * @version January 26, 2016
  */
 

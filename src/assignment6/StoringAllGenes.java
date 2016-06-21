@@ -2,7 +2,7 @@
  * Assignemnt 6: Storing All Genes / Processing DNA Strings
  * The progeam finds all the genes in a DNA string and then stores them using the
  * StorageResource class
- * @author Kuei-Jung Hu
+ * 
  * @version January 28, 2016
  */
 

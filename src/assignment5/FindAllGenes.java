@@ -2,7 +2,6 @@
  * Assignment 5: Finding All Genes
  * The program finds all the genes in a DNA string.
  * 
- * @author Kuei-Jung Hu
  * @version January 26, 2016
  */
 

@@ -6,8 +6,7 @@
  * 3. For each image, it saves the grayscale image in a new file with the same filename as the original image, 
  * but with the word ¡§gray-¡¨ in front of the filename. For example, if the original file was named lion.png, 
  * the new image would be a grayscale image and be named gray-lion.png.
- * 
- * @author Kuei-Jung Hu 
+ *  
  * @version January 21, 2016
  */
 

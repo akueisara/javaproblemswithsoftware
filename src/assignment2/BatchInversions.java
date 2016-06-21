@@ -4,7 +4,6 @@
  * 1. The method named makeInversion that has one parameter, an image, and returns a new image that is the inverse of the original image.
  * 2. The another method called selectAndConvert handles the batch processing of files. This method allows the user to select several files and display the images.
  * 
- * @author Kuei-Jung Hu 
  * @version January 21, 2016
  */
 

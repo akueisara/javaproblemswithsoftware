@@ -2,7 +2,6 @@
  * Assignment 7: Find All URLs
  * The program finds all the URLs on a web page and to print the URLs
  * 
- * @author Kuei-Jung Hu
  * @version January 28, 2016
  */
 
