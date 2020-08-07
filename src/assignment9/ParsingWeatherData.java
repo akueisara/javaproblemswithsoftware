@@ -44,7 +44,7 @@ public class ParsingWeatherData {
 		else {
 			double currentTemp = Double.parseDouble(currentRow.get("TemperatureF"));
 			double smallestTemp = Double.parseDouble(smallestSoFar.get("TemperatureF"));
-			//Check if currentRow’s temperature > largestSoFar’s
+			//Check if currentRowâ€™s temperature > largestSoFarâ€™s
 			if (currentTemp < smallestTemp && currentTemp != -9999) {
 				//If so update largestSoFar to currentRow
 				smallestSoFar = currentRow;
@@ -54,18 +54,33 @@ public class ParsingWeatherData {
 	}
 	
 	public static String fileWithColdestTemperature() {
-		CSVRecord coldestSoFar = null;
-		String filename="";
-		
+		String nameOfFile = "";
+		CSVRecord smallestSoFar = null;
 		DirectoryResource dr = new DirectoryResource();
-		for( File f : dr.selectedFiles()){
-			FileResource fr = new FileResource(f);
-			CSVParser parse = fr.getCSVParser();
-			CSVRecord currentRecord = coldestHourInFile(parse);
-			coldestSoFar = getSmallestOfTwo(currentRecord, coldestSoFar);
-			filename = f.getPath();
+
+		for(File f: dr.selectedFiles())
+		{
+		    FileResource fr = new FileResource(f);
+		    CSVParser parse = fr.getCSVParser();
+		    CSVRecord currentRow = coldestHourInFile(parse);
+
+		    if(smallestSoFar == null)
+		    {
+			smallestSoFar = currentRow;
+			nameOfFile = f.getAbsolutePath();
+		    }
+		    else
+		    {
+			double currentTemp = Double.parseDouble(currentRow.get("TemperatureF"));
+			double smallestTemp = Double.parseDouble(smallestSoFar.get("TemperatureF"));
+			if((currentTemp < smallestTemp) && (currentTemp > -90)) //... ignoring bogus values...lowest temp ever recorded on Earth was -89.2...
+			{
+			    smallestSoFar = currentRow;
+			    nameOfFile = f.getAbsolutePath(); //... point of interest
+			}
+		    }
 		}
-		return filename;
+	return nameOfFile;
 	}
 	
 	public static void testFileWithColdestTemperature() {
@@ -104,7 +119,7 @@ public class ParsingWeatherData {
 		    if (currentRow.get("Humidity").length() != 3){
 			    double currentTemp = Double.parseDouble(currentRow.get("Humidity"));
 			    double smallestTemp = Double.parseDouble(smallestSoFar.get("Humidity"));
-			    //Check if currentRow’s temperature < smallestSoFar’s
+			    //Check if currentRowâ€™s temperature < smallestSoFarâ€™s
 			    if (currentTemp < smallestTemp && currentTemp != -9999) {
 				    //If so update smallestSoFar to currentRow
 				    smallestSoFar = currentRow;
